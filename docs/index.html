@@ -6,13 +6,14 @@
     <title>Youns</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- 헤더 -->
-    <header class="bg-dark text-white py-3">
+    <header class="bg-dark text-white py-4">
         <div class="container">
-            <h1 class="text-center">Youns</h1>
+            <h1 class="text-center fw-bold">Youns</h1>
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -20,10 +21,10 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav mx-auto">
-                            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                            <li class="nav-item"><a class="nav-link fw-bold" href="#about">About</a></li>
+                            <li class="nav-item"><a class="nav-link fw-bold" href="#skills">Skills</a></li>
+                            <li class="nav-item"><a class="nav-link fw-bold" href="#projects">Projects</a></li>
+                            <li class="nav-item"><a class="nav-link fw-bold" href="#contact">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -33,72 +34,88 @@
 
     <!-- 소개 섹션 -->
     <main>
-        <section id="about" class="py-5">
-            <div class="container">
-                <h2 class="text-center">About Me</h2>
-                <p class="text-center">안녕하세요. JAVA SPRING 기반 웹 개발자 최윤성입니다.</p>
+        <section id="about" class="py-5 bg-light">
+            <div class="container text-center">
+                <h2 class="fw-bold">About Me</h2>
+                <div class="my-4">
+                    <img src="images/최윤성.jpg" alt="Profile Photo" class="rounded-circle shadow-sm mb-4">
+                    <p class="fs-5">
+                        안녕하세요! 저는 JAVA와 SPRING 기반으로 웹 애플리케이션을 개발하는 최윤성입니다. 창의적이고 도전적인 프로젝트를 통해 사용자 경험을 향상시키는 것을 목표로 하고 있습니다.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="mt-4 fw-bold">Education</h3>
+                    <ul class="list-unstyled">
+                        <li><strong>2020 - 2024:</strong> 컴퓨터공학, 서울대학교</li>
+                        <li><strong>2017 - 2020:</strong> 과학고등학교, 부산</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
         <!-- 기술 스택 -->
-        <section id="skills" class="bg-light py-5">
+        <section id="skills" class="bg-white py-5">
             <div class="container">
-                <h2 class="text-center mb-4">Skills</h2>
+                <h2 class="text-center fw-bold mb-4">Skills</h2>
                 <div class="row text-center">
                     <div class="col-md-4">
-                        <h3>프론트엔드</h3>
+                        <h3 class="fw-bold">Frontend</h3>
                         <p>HTML5, CSS3, JavaScript</p>
                     </div>
                     <div class="col-md-4">
-                        <h3>백엔드</h3>
+                        <h3 class="fw-bold">Backend</h3>
                         <p>Java, Spring Boot</p>
                     </div>
                     <div class="col-md-4">
-                        <h3>데이터베이스</h3>
-                        <p>OracleDB</p>
+                        <h3 class="fw-bold">Database</h3>
+                        <p>OracleDB, MySQL</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 프로젝트 -->
-		<section id="projects" class="py-5">
-			<div class="row row-cols-1 row-cols-md-3 g-4">
-			    <div class="col">
-			        <div class="card h-100">
-			            <div class="ratio ratio-4x3">
-			                <img src="https://via.placeholder.com/800x600" class="card-img-top" alt="Project Image">
-			            </div>
-			            <div class="card-body">
-			                <h5 class="card-title">Project Title</h5>
-			                <p class="card-text">This is a short description of the project.</p>
-			                <a href="#" class="btn btn-primary">View More</a>
-			            </div>
-			        </div>
-			    </div>
-			    <div class="col">
-			        <div class="card h-100">
-			            <div class="ratio ratio-4x3">
-			                <img src="https://via.placeholder.com/800x600" class="card-img-top" alt="Project Image">
-			            </div>
-			            <div class="card-body">
-			                <h5 class="card-title">Project Title</h5>
-			                <p class="card-text">This is a short description of the project.</p>
-			                <a href="#" class="btn btn-primary">View More</a>
-			            </div>
-			        </div>
-			    </div>
-			</div>
-		</section>
-
+        <section id="projects" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center fw-bold mb-4">Projects</h2>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <!-- 첫 번째 프로젝트 -->
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 project-card">
+                            <div class="ratio ratio-16x9">
+                                <img src="https://via.placeholder.com/800x450" class="card-img-top" alt="Project Image">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">E-Commerce Platform</h5>
+                                <p class="card-text">An online shopping platform built with Spring Boot and React.</p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 두 번째 프로젝트 -->
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 project-card">
+                            <div class="ratio ratio-16x9">
+                                <img src="https://via.placeholder.com/800x450" class="card-img-top" alt="Project Image">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">Task Management App</h5>
+                                <p class="card-text">A task management tool built using Java and MySQL.</p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- 연락처 -->
-        <section id="contact" class="bg-light py-5">
+        <section id="contact" class="py-5">
             <div class="container text-center">
-                <h2>Contact</h2>
-                <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-                <p>GitHub: <a href="https://github.com/username" target="_blank">https://github.com/username</a></p>
-                <p>LinkedIn: <a href="https://linkedin.com/in/username" target="_blank">https://linkedin.com/in/username</a></p>
+                <h2 class="fw-bold">Contact</h2>
+                <p class="fs-5">Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+                <p class="fs-5">GitHub: <a href="https://github.com/username" target="_blank">https://github.com/username</a></p>
+                <p class="fs-5">LinkedIn: <a href="https://linkedin.com/in/username" target="_blank">https://linkedin.com/in/username</a></p>
             </div>
         </section>
     </main>
