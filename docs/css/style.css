@@ -107,12 +107,18 @@ section {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100%;
-    height: auto;
-    max-width: 1920px;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    z-index: -1;
-    clip-path: inset(25% 0 25% 0); /* 상단과 하단에서 25%씩 잘라냄 */
+    width: auto; /* 가로 크기를 자동으로 비율에 맞게 설정 */
+    height: 50%; /* 세로 크기를 화면의 50%로 설정 */
+    transform: translate(-50%, -50%); /* 화면 중앙에 배치 */
+    object-fit: cover; /* 비율 유지, 화면을 꽉 채움 */
+    z-index: -1; /* 콘텐츠보다 뒤로 배치 */
 }
+
+/* 반응형: 화면 크기가 작을 때 */
+@media (max-width: 768px) {
+    #background-video {
+        height: 30%; /* 작은 화면에서는 세로 크기를 더 줄임 */
+    }
+}
+
 
