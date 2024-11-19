@@ -108,10 +108,11 @@ section {
     top: 50%;
     left: 50%;
     width: 100%;
-    height: auto; /* 비율을 유지하며 높이 자동 조정 */
-    max-width: 1920px; /* 최대 가로 크기 제한 */
-    max-height: 720px; /* 최대 세로 크기 제한 */
-    transform: translate(-50%, -50%); /* 화면 중앙 정렬 */
+    height: auto;
+    max-width: 1920px;
+    transform: translate(-50%, -50%);
     object-fit: cover;
-    z-index: -1; /* 콘텐츠보다 뒤로 배치 */
+    z-index: -1;
+    clip-path: inset(25% 0 25% 0); /* 상단과 하단에서 25%씩 잘라냄 */
 }
+
