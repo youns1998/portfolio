@@ -1,86 +1,70 @@
 /* 기본 스타일 */
 body {
-    font-family: 'Roboto', Arial, sans-serif; /* 더 현대적인 글꼴 추가 */
+    font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    line-height: 1.8; /* 더 넉넉한 줄 간격 */
     color: #333;
-    background-color: #f5f5f5; /* 배경색 추가 */
+    background-color: #f5f5f5;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1.5rem; /* 여백 증가 */
-}
-
-/* 헤더 스타일 */
 header {
-    background: linear-gradient(45deg, #333, #555); /* 그라디언트 배경 */
+    background: linear-gradient(45deg, #333, #555);
     color: white;
-    padding: 1.5rem 0; /* 상하 여백 증가 */
+    padding: 2rem 0;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 헤더 그림자 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
 
 header nav ul {
     list-style: none;
-    margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    gap: 1.5rem; /* 간격 증가 */
+    gap: 1.5rem;
 }
 
 header nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease; /* 부드러운 호버 효과 */
+    transition: color 0.3s ease;
 }
 
 header nav ul li a:hover {
-    color: #FFD700; /* 골드 색상으로 변경 */
+    color: #FFD700;
 }
 
-/* 섹션 스타일 */
+/* 섹션 */
 section {
-    padding: 3rem 0; /* 상하 여백 증가 */
+    padding: 3rem 0;
     background-color: white;
-    border-radius: 10px; /* 부드러운 모서리 */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 섹션에 그림자 추가 */
-    margin-bottom: 2rem; /* 섹션 간격 증가 */
+    margin: 2rem 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-section h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #222;
-    font-size: 2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
+/* 스킬 및 프로젝트 카드 */
 .skill-list,
 .project-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 2rem; /* 간격 증가 */
+    gap: 2rem;
     justify-content: center;
 }
 
-/* 카드 및 스킬 스타일 */
 .skill-list article,
 .project-list article {
-    background: #ffffff;
-    padding: 1.5rem;
+    background: #fff;
     border: 1px solid #ddd;
+    padding: 1.5rem;
     border-radius: 10px;
-    width: 280px; /* 약간 축소 */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 애니메이션 추가 */
+    width: 280px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .skill-list article:hover,
@@ -90,66 +74,25 @@ section h2 {
 }
 
 .project-list article a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
     display: inline-block;
     margin-top: 1rem;
-    color: #007BFF;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
 }
 
 .project-list article a:hover {
     color: #0056b3;
-    text-decoration: underline;
 }
 
-/* 프로필 이미지 */
-.profile-img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    border: 4px solid #ddd;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* 더 부드러운 그림자 */
-    transition: transform 0.3s ease; /* 부드러운 확대 효과 */
-}
-
-.profile-img:hover {
-    transform: scale(1.1);
-}
-
-/* 푸터 스타일 */
-footer {
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 1.5rem 0;
-    margin-top: 2rem;
-    border-top: 2px solid #555;
-}
-
-footer a {
-    color: #FFD700;
-    text-decoration: none;
-}
-
-footer a:hover {
-    color: #FFFFFF;
-}
-
-/* 반응형 스타일 */
+/* 반응형 */
 @media (max-width: 768px) {
     header nav ul {
-        flex-wrap: wrap; /* 모바일에서 메뉴 줄바꿈 */
+        flex-wrap: wrap;
     }
 
     .skill-list article,
     .project-list article {
-        width: 90%; /* 모바일에서 카드 크기 조정 */
-    }
-
-    section {
-        padding: 2rem 1rem; /* 섹션 패딩 축소 */
+        width: 90%;
     }
 }
