@@ -27,6 +27,25 @@ header h1 {
 }
 
 header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    padding: 0;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #FFD700;
+}
+
+/* 네비게이션 스타일 */
+nav ul {
     list-style: none; /* 기본 리스트 스타일 제거 */
     padding: 0;
     margin: 0 auto; /* 가운데 정렬 */
@@ -35,7 +54,7 @@ header nav ul {
     gap: 1.5rem; /* 각 항목 간 간격 */
 }
 
-header nav ul li a {
+nav ul li a {
     text-decoration: none; /* 밑줄 제거 */
     color: white; /* 링크 색상 */
     font-weight: bold;
@@ -43,9 +62,11 @@ header nav ul li a {
     transition: color 0.3s ease; /* 부드러운 호버 효과 */
 }
 
-header nav ul li a:hover {
-    color: #FFD700;
+nav ul li a:hover {
+    color: #FFD700; /* 호버 시 색상 변경 */
 }
+
+
 
 /* 섹션 */
 section {
