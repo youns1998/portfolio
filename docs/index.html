@@ -6,90 +6,93 @@
     <title>Youns Journey</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap JS -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- 헤더 -->
-    <header>
-    <!-- 배경 동영상 -->
-	    <video autoplay loop muted playsinline id="background-video">
-		    <source src="video/210592.mp4" type="video/mp4">
-		    Your browser does not support the video tag.
-		</video>
-        <div class="container">
-            <h1>Youns Journey</h1>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+    <header class="vh-100 position-relative">
+        <!-- 배경 동영상 -->
+        <video autoplay loop muted playsinline id="background-video">
+            <source src="video/210592.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- 헤더 콘텐츠 -->
+        <div class="container text-center text-white position-relative">
+            <h1 class="display-4 mb-4">Youns Journey</h1>
+            <nav class="d-flex justify-content-center gap-4 mb-5">
+                <a href="#about" class="btn btn-outline-light px-4">About</a>
+                <a href="#skills" class="btn btn-outline-light px-4">Skills</a>
+                <a href="#projects" class="btn btn-outline-light px-4">Projects</a>
+                <a href="#contact" class="btn btn-outline-light px-4">Contact</a>
             </nav>
+            <a href="#about" class="btn btn-light scroll-btn">Scroll Down</a>
         </div>
     </header>
 
-    <!-- 소개 섹션 -->
+    <!-- 메인 섹션 -->
     <main>
-        <section id="about">
-            <div class="container">
-                <h2>About Me</h2>
-                <img src="images/최윤성.jpg" alt="Profile Photo" class="profile-img">
+        <section id="about" class="py-5">
+            <div class="container text-center">
+                <h2 class="mb-4">About Me</h2>
+                <img src="images/최윤성.jpg" alt="Profile Photo" class="rounded-circle mb-4" width="150" height="150">
                 <p>Hello! I am a Java and Spring developer passionate about creating impactful applications.</p>
-                <h3>Education</h3>
-                <ul>
+                <h3 class="mt-4">Education</h3>
+                <ul class="list-unstyled">
                     <li><strong>2016 - 2022:</strong> Computer Engineering, Chungbuk University</li>
                     <li><strong>2024 - Ongoing:</strong> Daedeok Human Resource Development Institute</li>
                 </ul>
             </div>
         </section>
 
-        <!-- 기술 섹션 -->
-        <section id="skills">
-            <div class="container">
-                <h2>Skills</h2>
-                <div class="skill-list">
-                    <article>
+        <section id="skills" class="py-5 bg-light">
+            <div class="container text-center">
+                <h2 class="mb-4">Skills</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
                         <h3>Frontend</h3>
                         <p>HTML5, CSS3, JavaScript</p>
-                    </article>
-                    <article>
+                    </div>
+                    <div class="col-md-4 mb-3">
                         <h3>Backend</h3>
                         <p>Java, Spring Boot</p>
-                    </article>
-                    <article>
+                    </div>
+                    <div class="col-md-4 mb-3">
                         <h3>Database</h3>
                         <p>OracleDB, MySQL</p>
-                    </article>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 프로젝트 섹션 -->
-        <section id="projects">
-            <div class="container">
-                <h2>Projects</h2>
-                <div class="project-list">
-                    <article>
-                        <h3>E-Commerce Platform</h3>
-                        <p>An online shopping platform built with Spring Boot and React.</p>
-                        <a href="#">View More</a>
-                    </article>
-                    <article>
-                        <h3>Task Management App</h3>
-                        <p>A task management tool built using Java and MySQL.</p>
-                        <a href="#">View More</a>
-                    </article>
+        <section id="projects" class="py-5">
+            <div class="container text-center">
+                <h2 class="mb-4">Projects</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h3 class="card-title">E-Commerce Platform</h3>
+                                <p class="card-text">An online shopping platform built with Spring Boot and React.</p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h3 class="card-title">Task Management App</h3>
+                                <p class="card-text">A task management tool built using Java and MySQL.</p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 연락처 섹션 -->
-        <section id="contact">
-            <div class="container">
+        <section id="contact" class="py-5 bg-light">
+            <div class="container text-center">
                 <h2>Contact</h2>
                 <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
                 <p>GitHub: <a href="https://github.com/username" target="_blank">https://github.com/username</a></p>
@@ -99,11 +102,12 @@
     </main>
 
     <!-- 푸터 -->
-    <footer>
+    <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2024 Stellar Journey. All Rights Reserved.</p>
     </footer>
 
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
