@@ -27,31 +27,6 @@ header h1 {
     text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.8);
 }
 
-header nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-}
-
-header nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: 1.5rem;
-    padding: 1rem 2rem;
-    border-radius: 30px;
-    background-color: transparent;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-header nav ul li a:hover {
-    background-color: white;
-    color: #333;
-}
-
 #background-video {
     position: absolute;
     top: 50%;
@@ -71,11 +46,11 @@ section {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
-    /* 초기 상태: 숨김 */
+    /* 초기 상태 */
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.6s ease, transform 0.6s ease;
-    display: none; /* 숨김 처리 */
+    display: none; /* 기본적으로 숨김 처리 */
 }
 
 /* 활성화된 섹션 */
@@ -99,110 +74,14 @@ section p, section ul {
     line-height: 1.6;
 }
 
-/* Project List */
-.project-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-}
-
-.project-list article {
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-list article:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.project-list article a {
-    text-decoration: none;
-    color: #007BFF;
-    font-weight: bold;
-    display: inline-block;
-    margin-top: 1rem;
-}
-
-.project-list article a:hover {
-    color: #0056b3;
-}
-
-/* Scroll Button */
-.scroll-btn {
-    margin-top: 2rem;
-    padding: 0.8rem 2rem;
-    font-size: 1.2rem;
-    border-radius: 50px;
-    background-color: white;
-    color: #333;
-    border: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.scroll-btn:hover {
-    background-color: #FFD700;
-    color: #333;
-}
-
-/* Skills Section */
-#skills {
-    background-color: #f8f9fa;
-}
-
-.skill-block {
-    transition: all 0.3s ease-in-out;
-    border: 1px solid #ddd;
-    text-align: center;
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.skill-block i {
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.skill-block:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    background-color: #e9ecef;
-}
-
-.skill-block:hover i {
-    transform: scale(1.2);
-    color: #007bff;
-}
-
-/* Media Queries */
+/* 반응형 스타일 */
 @media (max-width: 768px) {
     header h1 {
         font-size: 2.5rem;
-    }
-
-    header nav ul {
-        flex-wrap: wrap;
-        gap: 1rem;
     }
 
     #background-video {
         width: 100%;
         height: auto;
     }
-
-    .project-list article {
-        width: 90%;
-    }
-}
-
-/* Scroll Animation */
-header.hidden {
-    opacity: 0;
-    transform: translateY(-100%);
-    transition: opacity 0.6s ease, transform 0.6s ease;
 }
