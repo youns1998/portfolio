@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
-    background-color: #f0f0f0; /* 배경색을 약간 밝게 설정 */
+    background-color: #f0f0f0;
     overflow-x: hidden;
 }
 
@@ -14,147 +14,71 @@ header {
     color: white;
     text-align: center;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 
+/* 동영상을 화면에 꽉 차게 */
 #background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.6); /* 동영상이 너무 밝으면 약간 어둡게 */
+}
+
+/* 중앙 정렬된 콘텐츠 */
+header .content-center {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100vw;
-    height: 100vh;
     transform: translate(-50%, -50%);
-    object-fit: cover;
-    z-index: -1;
+    text-align: center;
+    z-index: 10;
 }
 
-/* 네비게이션 바 측면 고정 */
+/* 헤더 제목 스타일 */
+header h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.9); /* 그림자로 가독성 향상 */
+    margin-bottom: 20px;
+}
+
+/* 네비게이션 스타일 */
 header nav {
-    position: fixed;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    max-width: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* 네비게이션 버튼 간격 */
 }
 
-/* 네비게이션 링크 세로 정렬 */
 header nav a {
-    display: block;
     color: white;
     text-decoration: none;
-    margin: 10px 0;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    transition: background-color 0.6s ease, color 0.6s ease, transform 0.6s ease;
-    text-align: center;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 30px;
+    transition: all 0.3s ease;
 }
 
-/* 현재 페이지 링크 강조 */
-header nav a.active {
-    background-color: white;
-    color: black;
-    font-weight: bold;
-    transform: scale(1.1);
-}
-
-/* 호버 효과 */
 header nav a:hover {
     background-color: white;
-    color: black;
-    transform: scale(1.1);
-}
-
-/* Section 기본 스타일 */
-section {
-    height: 90vh; /* 높이를 줄여서 배경색이 보이도록 설정 */
-    width: 90%; /* 너비를 줄여 중심에 표시 */
-    margin: 5vh auto; /* 섹션을 화면 가운데로 정렬 */
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
-    opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
-    pointer-events: none;
-    background-color: white; /* 기본 배경색 */
-}
-
-/* 활성화된 섹션 */
-section.visible {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* 더 강한 그림자 효과 */
-}
-
-/* 비활성화된 섹션 */
-section.inactive {
-    opacity: 0.5;
-    transform: scale(0.95);
-    pointer-events: none;
-}
-
-/* About */
-#about {
-    background-color: #f8f9fa;
-}
-
-/* Skills */
-#skills {
-    background-color: #e9ecef;
-}
-
-/* Projects */
-#projects {
-    background-color: #dee2e6;
-}
-
-/* Contact */
-#contact {
-    background-color: #ced4da;
+    color: #333;
 }
 
 /* 반응형 스타일 */
 @media (max-width: 768px) {
-    header nav {
-        position: static;
-        margin-top: 10px;
-        flex-direction: row;
-        justify-content: center;
-        max-width: none;
+    header h1 {
+        font-size: 2.5rem;
     }
 
     header nav a {
         font-size: 0.85rem;
-        padding: 8px 10px;
+        padding: 8px 15px;
     }
-
-    section {
-        width: 95%; /* 모바일 화면에서 더 넓게 */
-        height: 85vh; /* 섹션 높이를 조정 */
-    }
-}
-
-#scroll-to-top {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#scroll-to-top:hover {
-    background-color: #0056b3;
 }
