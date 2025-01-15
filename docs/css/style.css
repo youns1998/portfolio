@@ -57,7 +57,7 @@ nav a:hover {
 }
 /* Contact 섹션 카드 스타일 */
 .contact-card {
-    max-width: 500px; /* 카드의 최대 너비 */
+    max-width: 350px; /* 카드의 최대 너비 */
     margin: 0 auto; /* 가운데 정렬 */
 }
 
