@@ -167,3 +167,33 @@ header.hidden {
     transform: translateY(-100%);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
+/* Skills Section 스타일 */
+#skills {
+    background-color: #f8f9fa; /* 연한 회색 */
+}
+
+.skill-block {
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #ddd;
+    text-align: center;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.skill-block i {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.skill-block:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background-color: #e9ecef; /* 살짝 어두운 배경 */
+}
+
+.skill-block:hover i {
+    transform: scale(1.2);
+    color: #007bff; /* 포인트 컬러 */
+}
+
