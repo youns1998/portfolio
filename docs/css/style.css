@@ -31,27 +31,44 @@ header {
     z-index: -1;
 }
 
+/* 네비게이션 바 측면 고정 */
 header nav {
-    position: absolute;
-    bottom: 10%;
-    display: flex;
-    gap: 2rem;
+    position: fixed; /* 화면에 고정 */
+    top: 50%; /* 화면 중간에 위치 */
+    right: 10px; /* 오른쪽 여백 */
+    transform: translateY(-50%); /* 세로 중앙 정렬 */
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.6); /* 반투명 배경 */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
+/* 네비게이션 링크 세로 정렬 */
 header nav a {
-    text-decoration: none;
+    display: block;
     color: white;
-    font-size: 1.2rem;
-    padding: 0.5rem 1rem;
-    border: 2px solid white;
+    text-decoration: none;
+    margin: 10px 0;
+    padding: 10px 15px;
     border-radius: 20px;
     transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
 }
 
+/* 현재 페이지 링크 강조 */
+header nav a.active {
+    background-color: white; /* 활성화 배경색 */
+    color: black; /* 글자색 변경 */
+    font-weight: bold;
+}
+
+/* 호버 효과 */
 header nav a:hover {
     background-color: white;
     color: black;
 }
+
 
 /* Section 기본 스타일 */
 section {

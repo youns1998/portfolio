@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         },
         {
-            threshold: 0.5, // 섹션의 50% 이상 보일 때 활성화
+            threshold: 0.6, // 섹션의 60% 이상 보일 때 활성화
         }
     );
 
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(section);
     });
 
-    // 네비게이션 클릭 시 이동
+    // 네비게이션 클릭 시 부드럽게 스크롤 이동
     navLinks.forEach((link) => {
         link.addEventListener("click", (event) => {
             event.preventDefault();
@@ -53,4 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
+
+    // 초기 상태에서 첫 번째 섹션 활성화
+    if (sections.length > 0) {
+        sections[0].classList.add("visible");
+        navLinks[0].classList.add("active");
+    }
 });
