@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector("header");
     const sections = document.querySelectorAll("section");
-    let activeIndex = 0; // 현재 화면에 표시된 섹션의 인덱스
+    let activeIndex = 0; // 현재 활성화된 섹션의 인덱스
 
+    // Intersection Observer 설정
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
@@ -10,8 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (entry.isIntersecting) {
                     // 현재 섹션이 화면에 들어오면 visible 클래스 추가
+                    entry.target.classList.add("visible");
+
+                    // 해당 섹션을 최상단으로 스크롤
                     if (sectionIndex === activeIndex) {
-                        entry.target.classList.add("visible");
+                        entry.target.scrollIntoView({
+                            behavior: "smooth", // 부드러운 스크롤
+                            block: "start", // 최상단에 위치
+                        });
                     }
                 } else {
                     // 화면에서 벗어나면 visible 클래스 제거
@@ -24,21 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     );
 
+    // 각 섹션을 관찰
     sections.forEach((section) => observer.observe(section));
 
-    // 스크롤 이벤트로 헤더와 섹션 전환
+    // 스크롤 이벤트로 활성화된 섹션 인덱스 업데이트
     window.addEventListener("scroll", () => {
-        const currentScroll = window.scrollY;
         const windowHeight = window.innerHeight;
 
-        // 헤더 제어
-        if (currentScroll > windowHeight * 0.5) {
-            header.classList.add("hidden");
-        } else {
-            header.classList.remove("hidden");
-        }
-
-        // 현재 활성화된 섹션 결정
         sections.forEach((section, index) => {
             const rect = section.getBoundingClientRect();
             if (rect.top >= 0 && rect.top <= windowHeight * 0.5) {
