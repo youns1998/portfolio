@@ -21,9 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     // 네비게이션 활성화 업데이트
                     navLinks.forEach((link) => {
+                        const targetId = link.getAttribute("href").substring(1);
                         link.classList.toggle(
                             "active",
-                            link.getAttribute("href").substring(1) === entry.target.id
+                            targetId === entry.target.id
                         );
                     });
                 }
@@ -51,12 +52,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 behavior: "smooth",
                 block: "start",
             });
+
+            // 현재 섹션 활성화 업데이트
+            navLinks.forEach((otherLink) => {
+                otherLink.classList.toggle(
+                    "active",
+                    otherLink === link
+                );
+            });
         });
     });
 
     // 초기 상태에서 첫 번째 섹션 활성화
     if (sections.length > 0) {
         sections[0].classList.add("visible");
+        sections.forEach((section, index) => {
+            if (index !== 0) {
+                section.classList.add("inactive");
+            }
+        });
         navLinks[0].classList.add("active");
     }
 });

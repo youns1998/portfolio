@@ -42,6 +42,7 @@ header nav {
     border-radius: 10px;
     padding: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    max-width: 50px; /* 최대 너비 */
 }
 
 /* 네비게이션 링크 세로 정렬 */
@@ -52,7 +53,8 @@ header nav a {
     margin: 10px 0;
     padding: 10px 15px;
     border-radius: 20px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 0.9rem; /* 글자 크기 감소 */
+    transition: background-color 0.6s ease, color 0.6s ease, transform 0.6s ease;
     text-align: center;
 }
 
@@ -61,14 +63,15 @@ header nav a.active {
     background-color: white; /* 활성화 배경색 */
     color: black; /* 글자색 변경 */
     font-weight: bold;
+    transform: scale(1.1); /* 크기 약간 증가 */
 }
 
 /* 호버 효과 */
 header nav a:hover {
     background-color: white;
     color: black;
+    transform: scale(1.1); /* 호버 시 크기 증가 */
 }
-
 
 /* Section 기본 스타일 */
 section {
@@ -78,7 +81,7 @@ section {
     align-items: center;
     opacity: 0;
     transform: scale(0.95);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease;
     pointer-events: none; /* 비활성화된 섹션 클릭 불가 */
 }
 
@@ -91,7 +94,7 @@ section.visible {
 
 /* 비활성화된 섹션 */
 section.inactive {
-    opacity: 0;
+    opacity: 0.5;
     transform: scale(0.95);
     pointer-events: none;
 }
@@ -119,11 +122,15 @@ section.inactive {
 /* 반응형 스타일 */
 @media (max-width: 768px) {
     header nav {
-        flex-direction: column;
-        gap: 1rem;
+        position: static; /* 측면 고정을 해제 */
+        margin-top: 10px;
+        flex-direction: row; /* 가로로 정렬 */
+        justify-content: center;
+        max-width: none; /* 너비 제한 해제 */
     }
 
     header nav a {
-        font-size: 1rem;
+        font-size: 0.85rem;
+        padding: 8px 10px;
     }
 }
