@@ -25,9 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 sections.forEach((section) => {
-                    section.classList.add("d-none"); // 모든 섹션 숨기기
+                    // 활성화된 섹션에만 클래스 추가
+                    if (section === entry.target) {
+                        section.classList.add("active");
+                    } else {
+                        section.classList.remove("active");
+                    }
                 });
-                entry.target.classList.remove("d-none"); // 보이는 섹션 표시
             }
         });
     };

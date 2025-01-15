@@ -56,15 +56,22 @@ nav a:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* 모든 섹션 */
 .section {
     min-height: 100vh;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    opacity: 0.2; /* 기본적으로 반투명 */
+    visibility: visible; /* 항상 렌더링된 상태 유지 */
+    transition: opacity 0.5s ease;
 }
 
-.section.d-none {
-    opacity: 0;
-    visibility: hidden;
+/* 활성화된 섹션 */
+.section.active {
+    opacity: 1; /* 완전한 불투명도 */
+    visibility: visible; /* 항상 보이도록 유지 */
 }
 
+/* 비활성화된 섹션 */
+.section.inactive {
+    opacity: 0.2; /* 반투명 */
+    visibility: visible; /* 여전히 렌더링 상태 */
+}
