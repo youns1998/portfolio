@@ -63,7 +63,7 @@ header nav ul li a:hover {
     z-index: -1;
 }
 
-/* Section Styles */
+/* Section 기본 스타일 */
 section {
     padding: 4rem 0;
     background-color: white;
@@ -71,16 +71,18 @@ section {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
-    /* 초기 상태: 애니메이션 효과를 위해 숨김 */
+    /* 초기 상태: 숨김 */
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.6s ease, transform 0.6s ease;
+    display: none; /* 숨김 처리 */
 }
 
-/* 뷰포트에 들어왔을 때 */
+/* 활성화된 섹션 */
 section.visible {
     opacity: 1;
     transform: translateY(0);
+    display: block; /* 활성화된 섹션만 표시 */
 }
 
 section h2 {
@@ -96,6 +98,7 @@ section p, section ul {
     font-size: 1.1rem;
     line-height: 1.6;
 }
+
 
 /* Project List */
 .project-list {
