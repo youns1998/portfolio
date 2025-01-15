@@ -55,6 +55,12 @@ nav a:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
+/* Contact 섹션 카드 스타일 */
+.contact-card {
+    max-width: 500px; /* 카드의 최대 너비 */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
 
 /* 모든 섹션 */
 .section {
