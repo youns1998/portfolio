@@ -1,31 +1,48 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll("section");
     const header = document.querySelector("header");
+
     let lastScrollY = 0;
 
-    // 스크롤 이벤트 감지
+    // 헤더 스크롤 이벤트
     window.addEventListener("scroll", () => {
         const currentScrollY = window.scrollY;
 
-        // 아래로 스크롤할 때 헤더 숨기기
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
             header.classList.add("hidden");
-        } 
-        // 위로 스크롤할 때 헤더 다시 표시
-        else if (currentScrollY < lastScrollY) {
+        } else if (currentScrollY < lastScrollY) {
             header.classList.remove("hidden");
         }
 
-        lastScrollY = currentScrollY; // 현재 스크롤 값을 저장
+        lastScrollY = currentScrollY;
     });
+
+    // 스크롤 애니메이션 설정
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                } else {
+                    entry.target.classList.remove("visible");
+                }
+            });
+        },
+        {
+            threshold: 0.2, // 뷰포트의 20% 이상 보일 때 작동
+        }
+    );
+
+    sections.forEach((section) => observer.observe(section));
 
     // "Scroll Down" 버튼 클릭 시 부드러운 스크롤 처리
     const scrollBtn = document.querySelector(".scroll-btn");
     if (scrollBtn) {
         scrollBtn.addEventListener("click", (event) => {
             event.preventDefault();
-            const target = document.querySelector("#about"); // 이동할 섹션
+            const target = document.querySelector("#about");
             if (target) {
-                target.scrollIntoView({ behavior: "smooth" }); // 부드럽게 스크롤
+                target.scrollIntoView({ behavior: "smooth" });
             }
         });
     }

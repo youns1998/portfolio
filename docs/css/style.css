@@ -70,6 +70,17 @@ section {
     margin: 2rem 0;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    /* 초기 상태: 애니메이션 효과를 위해 숨김 */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* 뷰포트에 들어왔을 때 */
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 section h2 {
