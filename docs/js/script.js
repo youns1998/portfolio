@@ -2,24 +2,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll("header nav a");
 
-    let isScrolling = false; // 스크롤 중복 방지 플래그
-
     // Intersection Observer 설정
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting && !isScrolling) {
-                    const currentIndex = Array.from(sections).indexOf(entry.target);
+                if (entry.isIntersecting) {
+                    // 현재 보이는 섹션 활성화
+                    entry.target.classList.add("visible");
+                    entry.target.classList.remove("inactive");
 
-                    // 네비게이션 상태 업데이트
-                    navLinks.forEach((link, index) => {
-                        link.classList.toggle("active", index === currentIndex);
+                    // 다른 섹션 비활성화
+                    sections.forEach((section) => {
+                        if (section !== entry.target) {
+                            section.classList.remove("visible");
+                            section.classList.add("inactive");
+                        }
                     });
 
-                    // 섹션 활성화/비활성화 업데이트
-                    sections.forEach((section, index) => {
-                        section.classList.toggle("visible", index === currentIndex);
-                        section.classList.toggle("inactive", index !== currentIndex);
+                    // 네비게이션 활성화 업데이트
+                    navLinks.forEach((link) => {
+                        const targetId = link.getAttribute("href").substring(1);
+                        link.classList.toggle(
+                            "active",
+                            targetId === entry.target.id
+                        );
                     });
                 }
             });
@@ -34,53 +40,37 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(section);
     });
 
-    // 네비게이션 클릭 이벤트
-    navLinks.forEach((link, index) => {
+    // 네비게이션 클릭 시 부드럽게 스크롤 이동
+    navLinks.forEach((link) => {
         link.addEventListener("click", (event) => {
             event.preventDefault();
-            const targetSection = sections[index];
+            const targetId = link.getAttribute("href").substring(1);
+            const targetSection = document.getElementById(targetId);
 
-            isScrolling = true;
-            targetSection.scrollIntoView({ behavior: "smooth" });
+            // 스크롤로 해당 섹션으로 이동
+            targetSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
 
-            setTimeout(() => {
-                isScrolling = false;
-            }, 800); // 애니메이션 시간
+            // 클릭 시 네비게이션 상태 업데이트
+            navLinks.forEach((otherLink) => {
+                otherLink.classList.toggle(
+                    "active",
+                    otherLink === link
+                );
+            });
         });
     });
 
-    // 스크롤 이벤트 감지
-    let lastScrollY = window.scrollY;
-    window.addEventListener("scroll", () => {
-        const currentScrollY = window.scrollY;
-
-        if (Math.abs(currentScrollY - lastScrollY) > window.innerHeight / 2 && !isScrolling) {
-            const direction = currentScrollY > lastScrollY ? "down" : "up";
-            let currentSectionIndex = Array.from(sections).findIndex((section) =>
-                section.classList.contains("visible")
-            );
-
-            if (direction === "down" && currentSectionIndex < sections.length - 1) {
-                currentSectionIndex++;
-            } else if (direction === "up" && currentSectionIndex > 0) {
-                currentSectionIndex--;
+    // 초기 상태에서 첫 번째 섹션 활성화
+    if (sections.length > 0) {
+        sections[0].classList.add("visible");
+        sections.forEach((section, index) => {
+            if (index !== 0) {
+                section.classList.add("inactive");
             }
-
-            const targetSection = sections[currentSectionIndex];
-            if (targetSection) {
-                isScrolling = true;
-                targetSection.scrollIntoView({ behavior: "smooth" });
-
-                setTimeout(() => {
-                    isScrolling = false;
-                }, 800); // 애니메이션 시간
-            }
-        }
-
-        lastScrollY = currentScrollY;
-    });
-
-    // 초기 섹션 활성화
-    sections[0].classList.add("visible");
-    navLinks[0].classList.add("active");
+        });
+        navLinks[0].classList.add("active");
+    }
 });
