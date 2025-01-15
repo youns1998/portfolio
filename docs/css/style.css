@@ -174,26 +174,28 @@ header.hidden {
 }
 
 .skill-block {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; /* 모든 변화에 부드러운 효과 */
     border: 1px solid #ddd;
     text-align: center;
     background: #fff;
     border-radius: 10px;
     padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 기본 그림자 */
 }
 
 .skill-block i {
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease; /* 아이콘 애니메이션 */
 }
 
 .skill-block:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05); /* 살짝 확대 효과 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* 그림자 강화 */
     background-color: #e9ecef; /* 살짝 어두운 배경 */
 }
 
 .skill-block:hover i {
-    transform: scale(1.2);
+    transform: scale(1.2); /* 아이콘 크기 확대 */
     color: #007bff; /* 포인트 컬러 */
 }
+
 
