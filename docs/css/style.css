@@ -8,18 +8,6 @@ body {
     overflow-x: hidden;
 }
 
-header {
-    position: relative;
-    height: 100vh;
-    color: white;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-/* 동영상을 화면에 꽉 차게 */
 #background-video {
     position: absolute;
     top: 0;
@@ -28,35 +16,23 @@ header {
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    filter: brightness(0.6); /* 동영상이 너무 밝으면 약간 어둡게 */
+    filter: brightness(0.6);
 }
 
-/* 중앙 정렬된 콘텐츠 */
-header .content-center {
+.content-center {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 10;
+    z-index: 1;
 }
 
-/* 헤더 제목 스타일 */
-header h1 {
+.content-center h1 {
     font-size: 4rem;
-    font-weight: bold;
-    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.9); /* 그림자로 가독성 향상 */
-    margin-bottom: 20px;
+    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.9);
 }
 
-/* 네비게이션 스타일 */
-header nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* 네비게이션 버튼 간격 */
-}
-
-header nav a {
+nav a {
     color: white;
     text-decoration: none;
     font-size: 1rem;
@@ -66,19 +42,16 @@ header nav a {
     transition: all 0.3s ease;
 }
 
-header nav a:hover {
+nav a:hover {
     background-color: white;
     color: #333;
 }
 
-/* 반응형 스타일 */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2.5rem;
-    }
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    header nav a {
-        font-size: 0.85rem;
-        padding: 8px 15px;
-    }
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }

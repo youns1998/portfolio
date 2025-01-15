@@ -6,24 +6,22 @@
     <title>Youns Journey</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- 첫 번째 섹션 (Home) -->
     <section id="home" class="vh-100 position-relative">
-        <!-- 배경 동영상 -->
         <video autoplay loop muted playsinline id="background-video">
             <source src="video/210592.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <!-- 섹션 콘텐츠 -->
-        <div class="container text-center text-white position-relative">
+        <div class="content-center text-center text-white">
             <h1 class="display-4 mb-4">Youns Journey</h1>
-            <br>
-            <br>
-            <nav class="d-flex justify-content-center gap-4 mb-5">
-                <a href="#about" class="btn btn-outline-light px-4">About me</a>
+            <nav class="d-flex justify-content-center gap-4">
+                <a href="#about" class="btn btn-outline-light px-4">About Me</a>
                 <a href="#skills" class="btn btn-outline-light px-4">Skills</a>
                 <a href="#projects" class="btn btn-outline-light px-4">Projects</a>
                 <a href="#contact" class="btn btn-outline-light px-4">Contact</a>
@@ -31,101 +29,68 @@
         </div>
     </section>
 
-    <!-- 메인 섹션 -->
     <main>
+        <!-- About Section -->
         <section id="about" class="py-5">
             <div class="container text-center">
                 <h2 class="mb-4">About Me</h2>
-                <img src="images/최윤성.jpg" alt="Profile Photo" class="rounded-circle mb-4" width="200" height="250">
-                <p>안녕하세요? 성장하는 개발자 최윤성입니다.</p>
-                <p>개발자로써의 첫 발걸음을 함께하고싶습니다.</p>
-              
-                <h3 class="mt-4">Education</h3>
-                <ul class="list-unstyled">
-                    <li><strong>2016 - 2022:</strong> 충북대학교 컴퓨터공학과 졸업</li>
-                    <li><strong>2024:</strong> 대덕인재개발원 중도 퇴소</li>
-                </ul>
+                <div class="card mx-auto shadow hover-float">
+                    <div class="card-body">
+                        <img src="images/최윤성.jpg" alt="Profile Photo" class="rounded-circle mb-4" width="200" height="250">
+                        <p>안녕하세요? 성장하는 개발자 최윤성입니다.</p>
+                        <p>개발자로써의 첫 발걸음을 함께하고 싶습니다.</p>
+                        <h3 class="mt-4">Education</h3>
+                        <ul class="list-unstyled">
+                            <li><strong>2016 - 2022:</strong> 충북대학교 컴퓨터공학과 졸업</li>
+                            <li><strong>2024:</strong> 대덕인재개발원 중도 퇴소</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- Skills Section -->
         <section id="skills" class="py-5">
             <div class="container text-center">
                 <h2 class="mb-4">Skills</h2>
                 <div class="row">
-                    <!-- Frontend Block -->
                     <div class="col-md-4">
-                        <div class="skill-block shadow-sm p-4 bg-white rounded">
-                            <i class="fab fa-html5 fa-3x mb-3" style="color: #e34f26;"></i>
-                            <h3 class="mb-2">Frontend</h3>
-                            <p>HTML5, CSS3, JavaScript</p>
-                        </div>
-                    </div>
-                    <!-- Backend Block -->
-                    <div class="col-md-4">
-                        <div class="skill-block shadow-sm p-4 bg-white rounded">
-                            <i class="fas fa-code fa-3x mb-3" style="color: #6c757d;"></i>
-                            <h3 class="mb-2">Backend</h3>
-                            <p>Java, Spring Boot</p>
-                        </div>
-                    </div>
-                    <!-- Database Block -->
-                    <div class="col-md-4">
-                        <div class="skill-block shadow-sm p-4 bg-white rounded">
-                            <i class="fas fa-database fa-3x mb-3" style="color: #f0db4f;"></i>
-                            <h3 class="mb-2">Database</h3>
-                            <p>OracleDB, MySQL</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="py-5">
-            <div class="container text-center">
-                <h2 class="mb-4">Projects</h2>
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="card shadow">
+                        <div class="card shadow hover-float">
                             <div class="card-body">
-                                <h3 class="card-title">E-Commerce Platform</h3>
-                                <p class="card-text">An online shopping platform built with Spring Boot and React.</p>
-                                <a href="#" class="btn btn-primary">View More</a>
+                                <i class="fab fa-html5 fa-3x mb-3" style="color: #e34f26;"></i>
+                                <h3 class="mb-2">Frontend</h3>
+                                <p>HTML5, CSS3, JavaScript</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card shadow">
+                    <div class="col-md-4">
+                        <div class="card shadow hover-float">
                             <div class="card-body">
-                                <h3 class="card-title">Task Management App</h3>
-                                <p class="card-text">A task management tool built using Java and MySQL.</p>
-                                <a href="#" class="btn btn-primary">View More</a>
+                                <i class="fas fa-code fa-3x mb-3" style="color: #6c757d;"></i>
+                                <h3 class="mb-2">Backend</h3>
+                                <p>Java, Spring Boot</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow hover-float">
+                            <div class="card-body">
+                                <i class="fas fa-database fa-3x mb-3" style="color: #f0db4f;"></i>
+                                <h3 class="mb-2">Database</h3>
+                                <p>OracleDB, MySQL</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section id="contact" class="py-5">
-		    <div class="container text-center">
-		        <h2>Contact</h2>
-		        <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-		        <p>GitHub: <a href="https://github.com/username" target="_blank">https://github.com/username</a></p>
-		        <p>LinkedIn: <a href="https://linkedin.com/in/username" target="_blank">https://linkedin.com/in/username</a></p>
-		        <!-- Top으로 이동 버튼 -->
-		        <button id="scroll-to-top" class="btn btn-primary mt-4">Top으로 이동</button>
-		    </div>
-		</section>
-
     </main>
 
-    <!-- 푸터 -->
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2025 Stellar Journey. All Rights Reserved.</p>
     </footer>
 
-    <!-- Bootstrap JavaScript -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
 </body>
 </html>
