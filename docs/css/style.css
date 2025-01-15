@@ -143,3 +143,18 @@ section.inactive {
         height: 85vh; /* 섹션 높이를 조정 */
     }
 }
+
+#scroll-to-top {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#scroll-to-top:hover {
+    background-color: #0056b3;
+}
