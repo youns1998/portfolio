@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
-    background-color: #f5f5f5;
+    background-color: #f0f0f0; /* 배경색을 약간 밝게 설정 */
     overflow-x: hidden;
 }
 
@@ -33,16 +33,16 @@ header {
 
 /* 네비게이션 바 측면 고정 */
 header nav {
-    position: fixed; /* 화면에 고정 */
-    top: 50%; /* 화면 중간에 위치 */
-    right: 10px; /* 오른쪽 여백 */
-    transform: translateY(-50%); /* 세로 중앙 정렬 */
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
     z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.6); /* 반투명 배경 */
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     padding: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    max-width: 50px; /* 최대 너비 */
+    max-width: 50px;
 }
 
 /* 네비게이션 링크 세로 정렬 */
@@ -53,43 +53,47 @@ header nav a {
     margin: 10px 0;
     padding: 10px 15px;
     border-radius: 20px;
-    font-size: 0.9rem; /* 글자 크기 감소 */
+    font-size: 0.9rem;
     transition: background-color 0.6s ease, color 0.6s ease, transform 0.6s ease;
     text-align: center;
 }
 
 /* 현재 페이지 링크 강조 */
 header nav a.active {
-    background-color: white; /* 활성화 배경색 */
-    color: black; /* 글자색 변경 */
+    background-color: white;
+    color: black;
     font-weight: bold;
-    transform: scale(1.1); /* 크기 약간 증가 */
+    transform: scale(1.1);
 }
 
 /* 호버 효과 */
 header nav a:hover {
     background-color: white;
     color: black;
-    transform: scale(1.1); /* 호버 시 크기 증가 */
+    transform: scale(1.1);
 }
 
 /* Section 기본 스타일 */
 section {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 90vh; /* 높이를 줄여서 배경색이 보이도록 설정 */
+    width: 90%; /* 너비를 줄여 중심에 표시 */
+    margin: 5vh auto; /* 섹션을 화면 가운데로 정렬 */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
     opacity: 0;
     transform: scale(0.95);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    pointer-events: none; /* 비활성화된 섹션 클릭 불가 */
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+    pointer-events: none;
+    background-color: white; /* 기본 배경색 */
 }
 
 /* 활성화된 섹션 */
 section.visible {
     opacity: 1;
     transform: scale(1);
-    pointer-events: auto; /* 활성화된 섹션 클릭 가능 */
+    pointer-events: auto;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* 더 강한 그림자 효과 */
 }
 
 /* 비활성화된 섹션 */
@@ -122,15 +126,20 @@ section.inactive {
 /* 반응형 스타일 */
 @media (max-width: 768px) {
     header nav {
-        position: static; /* 측면 고정을 해제 */
+        position: static;
         margin-top: 10px;
-        flex-direction: row; /* 가로로 정렬 */
+        flex-direction: row;
         justify-content: center;
-        max-width: none; /* 너비 제한 해제 */
+        max-width: none;
     }
 
     header nav a {
         font-size: 0.85rem;
         padding: 8px 10px;
+    }
+
+    section {
+        width: 95%; /* 모바일 화면에서 더 넓게 */
+        height: 85vh; /* 섹션 높이를 조정 */
     }
 }
