@@ -9,6 +9,8 @@ body {
     background-color: #f8f9fa;
     overflow-x: hidden;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #background-video {
@@ -64,9 +66,12 @@ nav a:hover {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
     padding: 2rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .card:hover {
@@ -86,41 +91,195 @@ nav a:hover {
     min-height: 100vh;
     opacity: 0;
     visibility: visible;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
     position: relative;
     overflow: hidden;
-    padding: 4rem 0;
+    will-change: opacity, transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 /* 첫 번째 섹션(home) 스타일 */
 #home.section {
+    opacity: 1;
     background: transparent;
     padding: 0;
 }
 
-/* 나머지 섹션 스타일 */
+/* 섹션 배경 그라데이션 - 모든 섹션에 공통 배경 */
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+#home.section::before {
+    background: transparent;
+}
+
+#about.section::before {
+    background: linear-gradient(135deg, rgba(245, 247, 250, 0.9) 0%, rgba(230, 236, 245, 0.9) 100%);
+}
+
+#skills.section::before {
+    background: linear-gradient(135deg, rgba(236, 240, 246, 0.9) 0%, rgba(221, 232, 240, 0.9) 100%);
+}
+
+#projects.section::before {
+    background: linear-gradient(135deg, rgba(227, 233, 241, 0.9) 0%, rgba(212, 228, 235, 0.9) 100%);
+}
+
+#contact.section::before {
+    background: linear-gradient(135deg, rgba(218, 226, 236, 0.9) 0%, rgba(205, 224, 231, 0.9) 100%);
+}
+
+.section.active::before {
+    opacity: 1;
+}
+
+/* 나머지 섹션 스타일 - 가운데 정렬 */
 .section:not(#home) {
-    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.section:not(#home) .container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 15px;
+    position: relative;
+    z-index: 2;
+}
+
+/* About 섹션 */
+#about .card {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Skills 섹션 */
+#skills .row {
+    margin-top: 2rem;
+}
+
+/* Projects 섹션 */
+#projects .row {
+    margin-bottom: 2rem;
+}
+
+/* 프로젝트 카드 스타일 */
+.project-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    border: none;
+    border-radius: 20px;
+}
+
+.project-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.project-description {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.tech-stack {
+    margin-top: 1.5rem;
+}
+
+.tech-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.7rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.badge {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.achievement-list {
+    padding-left: 1.2rem;
+    color: #555;
+}
+
+.achievement-list li {
+    margin-bottom: 0.5rem;
+}
+
+.github-link {
+    margin-top: 1rem;
+}
+
+.github-link .btn {
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.github-link .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact 섹션 */
+#contact .container {
+    max-width: 800px;
 }
 
 .section.active {
     opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out 0.1s, visibility 0.5s ease-in-out 0.1s;
 }
 
 .section.inactive {
     opacity: 0;
-    transform: translateY(20px);
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
 
 /* 애니메이션 */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translate3d(0, 40px, 0);
     }
     to {
         opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
     }
 }
 
@@ -137,6 +296,14 @@ nav a:hover {
     
     .card {
         padding: 1.5rem;
+    }
+    
+    .project-card .row {
+        flex-direction: column;
+    }
+    
+    .project-card .col-md-4 {
+        margin-bottom: 2rem;
     }
 }
 
@@ -156,7 +323,8 @@ nav a:hover {
 .section h2 {
     font-family: 'Playfair Display', serif;
     color: #2c3e50;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    margin-top: 1rem;
     position: relative;
     display: inline-block;
 }
@@ -204,7 +372,7 @@ nav a:hover {
     text-decoration: none;
 }
 
-/* 섹션 인디케이터 스타일 */
+/* 개선된 섹션 인디케이터 스타일 */
 .section-indicator {
     position: fixed;
     right: 20px;
@@ -214,22 +382,50 @@ nav a:hover {
     flex-direction: column;
     gap: 15px;
     z-index: 100;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px 10px;
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 .indicator-dot {
+    position: relative;
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.indicator-dot::before {
+    content: attr(data-label);
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #2c3e50;
+    pointer-events: none;
+}
+
+.indicator-dot:hover::before {
+    opacity: 1;
+    right: 30px;
 }
 
 .indicator-dot:hover {
     transform: scale(1.2);
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 .indicator-dot.active {
@@ -238,7 +434,295 @@ nav a:hover {
     border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
+/* 탑다운 버튼 스타일 */
+.nav-buttons {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+}
+
+.top-button, .down-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    color: #2c3e50;
+}
+
+.top-button:hover, .down-button:hover {
+    background: linear-gradient(45deg, #4a90e2, #67b26f);
+    transform: scale(1.1);
+    color: white;
+}
+
+.top-button i, .down-button i {
+    font-size: 1.2rem;
+}
+
+.top-button.hidden, .down-button.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* 스크롤 방지 */
 html.no-scroll {
     overflow: hidden;
+}
+
+/* 애니메이션 클래스 */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateZ(0);
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+}
+
+.animate-on-scroll.visible {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* 섹션 전환 애니메이션 */
+.fade-transition {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Projects 섹션 새 스타일 */
+.project-detail-card {
+    transition: all 0.4s ease;
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    overflow: hidden;
+    border: none;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.project-detail-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.project-full-description {
+    color: #444;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.project-full-description p {
+    margin-bottom: 1rem;
+}
+
+.project-nav-btn {
+    margin: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.project-nav-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.feature-list, .achievement-list {
+    padding-left: 1.2rem;
+    color: #555;
+    margin-bottom: 0;
+}
+
+.feature-list li, .achievement-list li {
+    margin-bottom: 0.7rem;
+    position: relative;
+}
+
+.tech-stack .badge {
+    margin-right: 0.5rem;
+    margin-bottom: 0.7rem;
+    padding: 0.6rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.tech-stack .badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* 프로젝트 섹션 배경 스타일 */
+#project1.section::before {
+    background: linear-gradient(135deg, rgba(232, 245, 233, 0.95) 0%, rgba(220, 237, 222, 0.95) 100%);
+}
+
+#project2.section::before {
+    background: linear-gradient(135deg, rgba(239, 235, 233, 0.95) 0%, rgba(229, 224, 222, 0.95) 100%);
+}
+
+#project3.section::before {
+    background: linear-gradient(135deg, rgba(232, 240, 233, 0.95) 0%, rgba(221, 229, 225, 0.95) 100%);
+}
+
+/* 반응형 디자인 개선 */
+@media (max-width: 768px) {
+    .project-detail-card {
+        padding: 1.5rem;
+    }
+    
+    .project-full-description {
+        font-size: 0.95rem;
+    }
+    
+    .project-nav-btn {
+        width: 100%;
+        margin: 0.3rem 0;
+    }
+    
+    .tech-stack .badge {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* 프로젝트 섹션 스크롤 가능하도록 수정 */
+#project1.section, #project2.section, #project3.section {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* 프로젝트 섹션 스크롤바 스타일링 */
+#project1.section::-webkit-scrollbar,
+#project2.section::-webkit-scrollbar,
+#project3.section::-webkit-scrollbar {
+    width: 8px;
+}
+
+#project1.section::-webkit-scrollbar-track,
+#project2.section::-webkit-scrollbar-track,
+#project3.section::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#project1.section::-webkit-scrollbar-thumb,
+#project2.section::-webkit-scrollbar-thumb,
+#project3.section::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    border: 2px solid transparent;
+}
+
+#project1.section::-webkit-scrollbar-thumb:hover,
+#project2.section::-webkit-scrollbar-thumb:hover,
+#project3.section::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 프로젝트 섹션 내부 컨테이너 패딩 조정 */
+#project1 .container, #project2 .container, #project3 .container {
+    padding-top: 3.5rem;
+    padding-bottom: 4rem;
+}
+
+/* 향상된 섹션 전환 그라데이션 */
+.section-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0);
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
+}
+
+.section-transition-overlay.active {
+    opacity: 0.3;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(240, 240, 240, 0.7));
+}
+
+/* 섹션 전환 중 불필요한 렌더링 방지 */
+body.is-changing {
+    pointer-events: none;
+}
+
+/* 사전 로드된 섹션 스타일 - 문제 수정 */
+.section.preloaded {
+    /* 삭제 - 이 부분이 모든 섹션을 숨기는 원인 */
+    /* visibility: hidden; */
+    /* opacity: 0; */
+}
+
+/* will-change 과도한 사용 최적화 */
+.project-detail-card, 
+.card, 
+.section,
+.animate-on-scroll,
+.container,
+.project-icon, 
+.skill-icon,
+.section-transition-overlay {
+    will-change: auto; /* 브라우저가 자동으로 결정하도록 변경 */
+}
+
+/* 중요한 요소에만 will-change 유지 */
+.section:hover,
+.card:hover,
+.project-detail-card:hover {
+    will-change: transform;
+}
+
+/* 이미지 최적화 */
+img {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* 프로젝트 카드 렌더링 최적화 */
+.project-detail-card .row {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* 아이콘 렌더링 최적화 */
+.project-icon, .skill-icon {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* 섹션 내용 컨테이너 최적화 */
+.container {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+    .section {
+        will-change: opacity;
+    }
+    
+    .card {
+        will-change: transform;
+    }
 }
