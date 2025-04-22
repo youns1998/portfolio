@@ -418,6 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		    const targetIndex = Array.from(sections).findIndex(sec => sec.id === targetId);
 
 		    if (targetIndex !== -1) {
+		        // 1. 섹션 상태 초기화
 		        sections.forEach((sec, idx) => {
 		            if (idx === targetIndex) {
 		                activateSection(sec);
@@ -434,15 +435,20 @@ document.addEventListener("DOMContentLoaded", () => {
 		            }
 		        });
 
-		        // ⭐ 여기가 추가되는 부분
-		        window.scrollTo({
-		            top: sections[targetIndex].offsetTop,
-		            behavior: 'instant'
+		        // 2. 렌더링 프레임 다음으로 스크롤 밀어주기
+		        requestAnimationFrame(() => {
+		            setTimeout(() => {
+		                sections[targetIndex].scrollIntoView({
+		                    behavior: 'auto',
+		                    block: 'start'
+		                });
+		            }, 100);
 		        });
 
 		        updateNavButtons();
 		    }
 		}
+
 
 
     };
