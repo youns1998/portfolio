@@ -408,50 +408,35 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     
     // 초기화 함수
-    const init = () => {
-        createIndicator();
-        updateNavButtons();
-        checkAnimatedElements();
-        
-		if (window.location.hash) {
-		    const targetId = window.location.hash.substring(1);
-		    const targetIndex = Array.from(sections).findIndex(sec => sec.id === targetId);
+	const init = () => {
+	    // 1. 해시 제거 (스크롤 위치 오작동 방지)
+	    history.replaceState(null, "", window.location.pathname);
 
-		    if (targetIndex !== -1) {
-		        // 1. 섹션 상태 초기화
-		        sections.forEach((sec, idx) => {
-		            if (idx === targetIndex) {
-		                activateSection(sec);
-		                sec.classList.add('active');
-		                sec.classList.remove('inactive');
-		                sec.style.zIndex = 2;
-		                sec.style.opacity = 1;
-		                currentSectionIndex = idx;
-		            } else {
-		                sec.classList.remove('active');
-		                sec.classList.add('inactive');
-		                sec.style.zIndex = 1;
-		                sec.style.opacity = 0;
-		            }
-		        });
+	    // 2. 인디케이터 생성 및 초기 UI 설정
+	    createIndicator();
+	    updateNavButtons();
+	    checkAnimatedElements();
 
-		        // 2. 렌더링 프레임 다음으로 스크롤 밀어주기
-		        requestAnimationFrame(() => {
-		            setTimeout(() => {
-		                sections[targetIndex].scrollIntoView({
-		                    behavior: 'auto',
-		                    block: 'start'
-		                });
-		            }, 100);
-		        });
+	    // 3. 첫 번째 섹션 강제 활성화 (보장)
+	    activateSection(sections[0]);
+	    sections[0].classList.add('active');
+	    sections[0].classList.remove('inactive');
+	    sections[0].style.zIndex = 2;
+	    sections[0].style.opacity = 1;
 
-		        updateNavButtons();
-		    }
-		}
+	    // 나머지 섹션 비활성화
+	    sections.forEach((sec, idx) => {
+	        if (idx !== 0) {
+	            sec.classList.remove('active');
+	            sec.classList.add('inactive');
+	            sec.style.zIndex = 1;
+	            sec.style.opacity = 0;
+	        }
+	    });
 
+	    currentSectionIndex = 0;
+	};
 
-
-    };
     
     // 초기화 실행
     init();
