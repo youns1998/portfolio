@@ -413,13 +413,31 @@ document.addEventListener("DOMContentLoaded", () => {
         updateNavButtons();
         checkAnimatedElements();
         
-        // 해시가 있으면 해당 섹션으로 이동
-        if (window.location.hash) {
-            const targetId = window.location.hash.substring(1);
-            setTimeout(() => {
-                scrollToSection(targetId);
-            }, 300);
-        }
+		if (window.location.hash) {
+		    const targetId = window.location.hash.substring(1);
+		    const targetIndex = Array.from(sections).findIndex(sec => sec.id === targetId);
+
+		    if (targetIndex !== -1) {
+		        // 섹션 초기화 상태 반영
+		        sections.forEach((sec, idx) => {
+		            if (idx === targetIndex) {
+		                activateSection(sec);
+		                sec.classList.add('active');
+		                sec.classList.remove('inactive');
+		                sec.style.zIndex = 2;
+		                sec.style.opacity = 1;
+		                currentSectionIndex = idx;
+		            } else {
+		                sec.classList.remove('active');
+		                sec.classList.add('inactive');
+		                sec.style.zIndex = 1;
+		                sec.style.opacity = 0;
+		            }
+		        });
+		        updateNavButtons();
+		    }
+		}
+
     };
     
     // 초기화 실행
