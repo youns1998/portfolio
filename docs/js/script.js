@@ -409,22 +409,23 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // 초기화 함수
 	const init = () => {
-	    // 1. 해시 제거 (스크롤 위치 오작동 방지)
+	    // 1. 해시 제거 + 스크롤 초기화
 	    history.replaceState(null, "", window.location.pathname);
+	    window.scrollTo(0, 0); // ← 요거 추가!!
 
 	    // 2. 인디케이터 생성 및 초기 UI 설정
 	    createIndicator();
 	    updateNavButtons();
 	    checkAnimatedElements();
 
-	    // 3. 첫 번째 섹션 강제 활성화 (보장)
+	    // 3. 첫 번째 섹션 강제 활성화
 	    activateSection(sections[0]);
 	    sections[0].classList.add('active');
 	    sections[0].classList.remove('inactive');
 	    sections[0].style.zIndex = 2;
 	    sections[0].style.opacity = 1;
 
-	    // 나머지 섹션 비활성화
+	    // 4. 나머지 비활성화
 	    sections.forEach((sec, idx) => {
 	        if (idx !== 0) {
 	            sec.classList.remove('active');
@@ -436,6 +437,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	    currentSectionIndex = 0;
 	};
+
 
     
     // 초기화 실행
