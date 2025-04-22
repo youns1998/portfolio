@@ -407,45 +407,50 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
     
-    // 초기화 함수
-    const init = () => {
-        createIndicator();
-        updateNavButtons();
-        checkAnimatedElements();
-        
-		if (window.location.hash) {
-		    const targetId = window.location.hash.substring(1);
-		    const targetIndex = Array.from(sections).findIndex(sec => sec.id === targetId);
+	// 초기화 함수 수정
+	const init = () => {
+	    createIndicator();
+	    updateNavButtons();
+	    checkAnimatedElements();
+	    
+	    // 해시 기반 섹션 로딩 로직 개선
+	    if (window.location.hash) {
+	        const targetId = window.location.hash.substring(1);
+	        const targetIndex = Array.from(sections).findIndex(sec => sec.id === targetId);
 
-		    if (targetIndex !== -1) {
-		        sections.forEach((sec, idx) => {
-		            if (idx === targetIndex) {
-		                activateSection(sec);
-		                sec.classList.add('active');
-		                sec.classList.remove('inactive');
-		                sec.style.zIndex = 2;
-		                sec.style.opacity = 1;
-		                currentSectionIndex = idx;
-		            } else {
-		                sec.classList.remove('active');
-		                sec.classList.add('inactive');
-		                sec.style.zIndex = 1;
-		                sec.style.opacity = 0;
-		            }
-		        });
+	        if (targetIndex !== -1) {
+	            // 1. 먼저 모든 섹션 비활성화
+	            sections.forEach((sec, idx) => {
+	                sec.classList.remove('active');
+	                sec.classList.add('inactive');
+	                sec.style.zIndex = 1;
+	                sec.style.opacity = 0;
+	            });
 
-		        // ⭐ 여기가 추가되는 부분
-		        window.scrollTo({
-		            top: sections[targetIndex].offsetTop,
-		            behavior: 'instant'
-		        });
+	            // 2. 타겟 섹션 활성화
+	            const targetSection = sections[targetIndex];
+	            targetSection.classList.add('active');
+	            targetSection.classList.remove('inactive');
+	            targetSection.style.zIndex = 2;
+	            targetSection.style.opacity = 1;
+	            currentSectionIndex = targetIndex;
 
-		        updateNavButtons();
-		    }
-		}
-
-
-    };
+	            // 3. 페이지 로드 완료 후 스크롤 위치 조정 (약간의 지연 추가)
+	            setTimeout(() => {
+	                window.scrollTo({
+	                    top: targetSection.offsetTop,
+	                    behavior: 'auto' // 'instant' 대신 'auto' 사용
+	                });
+	                
+	                // 4. 추가로 스크롤 이벤트 강제 발생
+	                window.dispatchEvent(new Event('scroll'));
+	                
+	                // 5. 네비게이션 버튼 업데이트
+	                updateNavButtons();
+	            }, 50); // 짧은 지연 추가
+	        }
+	    }
+	};
     
     // 초기화 실행
     init();
