@@ -418,7 +418,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		    const targetIndex = Array.from(sections).findIndex(sec => sec.id === targetId);
 
 		    if (targetIndex !== -1) {
-		        // 섹션 초기화 상태 반영
 		        sections.forEach((sec, idx) => {
 		            if (idx === targetIndex) {
 		                activateSection(sec);
@@ -434,9 +433,17 @@ document.addEventListener("DOMContentLoaded", () => {
 		                sec.style.opacity = 0;
 		            }
 		        });
+
+		        // ⭐ 여기가 추가되는 부분
+		        window.scrollTo({
+		            top: sections[targetIndex].offsetTop,
+		            behavior: 'instant'
+		        });
+
 		        updateNavButtons();
 		    }
 		}
+
 
     };
     
