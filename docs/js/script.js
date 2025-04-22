@@ -409,54 +409,44 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // 초기화 함수
     const init = () => {
-		
-		// 새로고침 시 항상 첫 화면으로 이동
-	    if (performance.navigation.type === 1) { // 1은 새로고침을 의미
-	        window.scrollTo(0, 0);
-	        currentSectionIndex = 0;
-	        scrollToSection(0);
-	    }
         createIndicator();
         updateNavButtons();
         checkAnimatedElements();
         
-        if (window.location.hash) {
-            const targetId = window.location.hash.substring(1);
-            const targetIndex = Array.from(sections).findIndex(sec => sec.id === targetId);
+		if (window.location.hash) {
+		    const targetId = window.location.hash.substring(1);
+		    const targetIndex = Array.from(sections).findIndex(sec => sec.id === targetId);
 
-            if (targetIndex !== -1) {
-                // 1. 섹션 상태 초기화
-                sections.forEach((sec, idx) => {
-                    if (idx === targetIndex) {
-                        activateSection(sec);
-                        sec.classList.add('active');
-                        sec.classList.remove('inactive');
-                        sec.style.zIndex = 2;
-                        sec.style.opacity = 1;
-                        currentSectionIndex = idx;
-                    } else {
-                        sec.classList.remove('active');
-                        sec.classList.add('inactive');
-                        sec.style.zIndex = 1;
-                        sec.style.opacity = 0;
-                    }
-                });
+		    if (targetIndex !== -1) {
+		        sections.forEach((sec, idx) => {
+		            if (idx === targetIndex) {
+		                activateSection(sec);
+		                sec.classList.add('active');
+		                sec.classList.remove('inactive');
+		                sec.style.zIndex = 2;
+		                sec.style.opacity = 1;
+		                currentSectionIndex = idx;
+		            } else {
+		                sec.classList.remove('active');
+		                sec.classList.add('inactive');
+		                sec.style.zIndex = 1;
+		                sec.style.opacity = 0;
+		            }
+		        });
 
-                // 2. 렌더링 프레임 다음으로 스크롤 밀어주기
-                requestAnimationFrame(() => {
-                    setTimeout(() => {
-                        sections[targetIndex].scrollIntoView({
-                            behavior: 'auto',
-                            block: 'start'
-                        });
-                    }, 100);
-                });
+		        // ⭐ 여기가 추가되는 부분
+		        window.scrollTo({
+		            top: sections[targetIndex].offsetTop,
+		            behavior: 'instant'
+		        });
 
-                updateNavButtons();
-            }
-        }
+		        updateNavButtons();
+		    }
+		}
+
+
     };
     
     // 초기화 실행
     init();
-});
+}); 
